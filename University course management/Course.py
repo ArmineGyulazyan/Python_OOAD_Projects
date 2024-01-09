@@ -2,23 +2,24 @@ import abc
 from typing import List
 import Assignment
 import Student
+import Professor
 
 class Course(abc.ABC):
 
-    def __init__(self,name:str, instructor:str, content:str, quantity:int):
+    def __init__(self,name:str, instructor:"Professor.Professor", content:str, quantity:int):
         self.name = name
         self.instructor = instructor
         self.content = content
         self.quantity = quantity
-        self.assignments: List = []
-        self.students: List[Student] = []
+        self.assignments: List["Assignment.Assignment"] = []
+        self.students: List["Student.Student"] = []
 
-    def enroll_in_course(self, student: Student)->None:
-        if len(self.students) >= self.quantity:
-            raise ValueError("All seats are taken")
-        self.students.append(student)
-        
+    def add_assignment(self,assignment:"Assignment.Assignment")->None:
+        self.assignments.append(assignment)
 
     @abc.abstractmethod
-    def add_assignment(self,assignment:Assignment)->None:
+    def ensure_to_pass(self):
         ...
+
+###
+

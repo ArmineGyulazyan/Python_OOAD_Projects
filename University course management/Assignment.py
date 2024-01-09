@@ -8,11 +8,11 @@ class Assignment(abc.ABC):
         self.problem_name = problem_name
         self.description = description
 
-
     @abc.abstractmethod
-    def submit(self, student: Student):
+    def submit(self, student: "Student.Student"):
         ...
 
     @abc.abstractmethod
     def view_submissions(self):
         ...
+###
